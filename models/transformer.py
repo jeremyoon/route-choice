@@ -134,6 +134,9 @@ class TFMC(nn.Module):
         """Fix weights for first 4 features."""
         with torch.no_grad():
             self.conv.weight.data[0, 0, 0, :self.num_constrained] = cnn1_weights.flatten()[:self.num_constrained]
+            # Ensure fare weight is clamped to -1
+            if self.num_constrained >= 2:
+                self.conv.weight.data[0, 0, 0, 1] = -1.0
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         batch_size, num_routes, num_features, _ = x.size()

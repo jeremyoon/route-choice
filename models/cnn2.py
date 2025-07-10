@@ -159,11 +159,17 @@ class CNN2C(nn.Module):
             self.apply_constraint(cnn1_weights)
     
     def apply_constraint(self, cnn1_weights: torch.Tensor):
-        """Fix the weights for interpretable features (first 4)."""
+        """Fix the weights for interpretable features (first 4).
+        
+        Args:
+            cnn1_weights: Weights from CNN1 model for the first 4 features
+        """
         with torch.no_grad():
-            # CNN1 weights should be shape (4,) or similar
-            # We only constrain the linear terms of interpretable features
+            # Set the linear weights for interpretable features
             self.conv.weight.data[0, 0, 0, :self.num_interpretable] = cnn1_weights.flatten()[:self.num_interpretable]
+            # Ensure fare weight is clamped to -1
+            if self.num_interpretable >= 2:
+                self.conv.weight.data[0, 0, 0, 1] = -1.0
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Same forward pass as CNN2S."""
