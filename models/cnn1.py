@@ -1,11 +1,11 @@
-"""Simple CNN model that is mathematically equivalent to multinomial logit."""
+"""CNN1 model - Linear CNN equivalent to multinomial logit."""
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
 
-class SimpleCNN(nn.Module):
+class CNN1(nn.Module):
     """Simple 1D CNN for route choice modeling.
     
     This model is mathematically equivalent to a multinomial logit model.
@@ -24,7 +24,7 @@ class SimpleCNN(nn.Module):
     """
     
     def __init__(self, num_features: int, use_bias: bool = False):
-        super(SimpleCNN, self).__init__()
+        super(CNN1, self).__init__()
         self.num_features = num_features
         
         # 1D convolution that acts across features

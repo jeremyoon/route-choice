@@ -1,4 +1,4 @@
-"""Test script for SimpleCNN model."""
+"""Test script for CNN1 model."""
 
 import sys
 sys.path.insert(0, '/mnt/md0/route-choice/DeepLogit')
@@ -8,7 +8,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-from models.simple_cnn import SimpleCNN
+from models.cnn1 import CNN1
 from data.dataset import CustomDataset
 from utils.common import init_random_seed, count_parameters, get_device
 from utils.training import train_epoch, validate
@@ -37,7 +37,7 @@ def create_synthetic_data(n_samples=1000, n_routes=6, n_features=4):
 
 def main():
     """Main test function."""
-    print("Testing SimpleCNN model for route choice prediction")
+    print("Testing CNN1 model for route choice prediction")
     print("=" * 50)
     
     # Set random seed for reproducibility
@@ -60,8 +60,8 @@ def main():
     val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
     
     # Create model
-    print("\nCreating SimpleCNN model...")
-    model = SimpleCNN(num_features=4).to(device)
+    print("\nCreating CNN1 model...")
+    model = CNN1(num_features=4).to(device)
     print(f"Model parameters: {count_parameters(model)}")
     
     # Test forward pass

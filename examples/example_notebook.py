@@ -1,12 +1,12 @@
 """
-Example Notebook: DeepLogit Tutorial
-This file can be converted to a Jupyter notebook using jupytext
+DeepLogit Example Notebook
+Convert to Jupyter notebook with: jupytext --to notebook example_notebook.py
 """
 
 # %% [markdown]
-# # DeepLogit Tutorial: Route Choice Modeling with Neural Networks
+# # DeepLogit Example
 # 
-# This notebook demonstrates how to use DeepLogit for route choice modeling.
+# Demonstrates the sequential constraint approach for route choice modeling.
 
 # %% [markdown]
 # ## 1. Setup and Imports
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from torch.utils.data import DataLoader
 
-from models.simple_cnn import SimpleCNN
+from models import CNN1, CNN2C
 from data.dataset import CustomDataset
 from utils.common import init_random_seed, count_parameters, get_device
 from utils.training import train_epoch, validate
